@@ -3,12 +3,9 @@ using ControleDeEstoque.Menu;
 //var context = new ScreenSoundContext();
 //var artistaDAL = new DAL<Artista>(context);
 
-//Dictionary<int, Menu> opcoes = new();
-//opcoes.Add(1, new MenuRegistrarArtista());
-//opcoes.Add(2, new MenuRegistrarMusica());
-//opcoes.Add(3, new MenuMostrarArtistas());
-//opcoes.Add(4, new MenuMostrarMusicas());
-//opcoes.Add(-1, new MenuSair());
+Dictionary<int, Menu> opcoes = new();
+
+opcoes.Add(-1, new MenuSair());
 
 void ExibirLogo()
 {

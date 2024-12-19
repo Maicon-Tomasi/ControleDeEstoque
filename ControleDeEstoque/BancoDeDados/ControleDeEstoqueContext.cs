@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ControleDeEstoque.BancoDeDados;
 internal class ControleDeEstoqueContext : DbContext
 {
-    private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ScreenSoundV0;Integrated Security=True;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+    private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ControleDeEstoque;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

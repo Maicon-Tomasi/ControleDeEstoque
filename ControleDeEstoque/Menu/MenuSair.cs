@@ -1,5 +1,8 @@
 ﻿namespace ControleDeEstoque.Menu;
-internal class MenuSair
+internal class MenuSair : Menu
 {
-
+    public override void Executar()
+    {
+        Console.WriteLine("Tchau Tchau");
+    }
 }
