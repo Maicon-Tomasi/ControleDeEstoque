@@ -11,7 +11,7 @@ public class Estoque
     [Key]
     public int IdEstoque { get; set; }
     public string Nome { get; set; }
-    public ICollection<EstoqueProduto> EstoqueProdutos { get; set; }
+    public ICollection<EstoqueProduto> Produtos { get; set; }
 
     public Estoque()
     {

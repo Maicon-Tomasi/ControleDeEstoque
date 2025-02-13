@@ -11,6 +11,8 @@ public class ItemDeSaida
     public string Lote { get; set; }
     public float Quantidade { get; set; }
     public float Valor { get; set; }
+    public int IdProduto { get; set; }
+    public DateTime DataDeSaida { get; set; }
     public Produto Produto { get; set; }
 
     public ItemDeSaida() { }

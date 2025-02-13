@@ -3,6 +3,7 @@ using ControleDeEstoque.Menu;
 using ControleDeEstoque.Modelos;
 using ControleDeEstoque.Database;
 using ControleDeEstoque.BancoDeDados;
+using ControleDeEstoque.Menu.MenuOperacoes;
 
 
 var context = new ControleDeEstoqueContext();
@@ -12,15 +13,21 @@ var fornecedorDal = new DAL<Fornecedor>(context);
 var transportadoraDal = new DAL<Transportadora>(context);
 var cidadeDal = new DAL<Cidade>(context);
 var categoriaDal = new DAL<Categoria>(context);
+var entradaProdutoDal = new DAL<ItemDeEntrada>(context);
+var saidaProdutoDal = new DAL<ItemDeSaida>(context);
+var estoqueProdutoDal = new DAL<EstoqueProduto>(context);
+
+
 
 Dictionary<int, string> categorias = new()
 {
     { 1, "Opções de Estoque" },
     { 2, "Opções de Produtos" },
-    { 3, "Opções de Fornecedoe" },
+    { 3, "Opções de Fornecedor" },
     { 4, "Opções de Transportadora" },
     { 5, "Opções de Cidade" },
-    { 6, "Opções de Categoria" }, 
+    { 6, "Opções de Categoria" },
+    { 7, "Operações" },
     { -1, "Sair" }
 };
 
@@ -73,6 +80,15 @@ Dictionary<int, Menu> opcoesCategorias = new()
     { 4, new MenuDeletarCategoria(context, categoriaDal) }
 };
 
+Dictionary<int, Menu> opcoesOperacoes = new()
+{
+    { 1, new EntradaDeProduto(context, entradaProdutoDal) },
+    { 2, new SaidaDeProdutos(context, saidaProdutoDal) },
+    { 3, new VisualizarProdutosArmazenados(context, estoqueProdutoDal) },
+    { 4, new MenuExibirEntradaDeProdutos(context, entradaProdutoDal) },
+    { 5, new MenuExibirSaidaDeProdutos(context, saidaProdutoDal) }
+};
+
 Dictionary<int, string> descricoesProdutos = new()
 {
     { 1, "Cadastrar Produto" },
@@ -120,6 +136,15 @@ Dictionary<int, string> descricoesCategoria = new()
     { 2, "Listar Categoria Cadastradas" },
     { 3, "Editar Categoria" },
     { 4, "Deletar Categoria" }
+};
+
+Dictionary<int, string> descricoesOperacoes = new()
+{
+    { 1, "Entrada de produto" },
+    { 2, "Saida de produto" },
+    { 3, "produtos armazenados" },
+    { 4, "Exibir entradas de produto" },
+    { 5, "Exibir saidas de produto" }
 };
 
 
@@ -177,6 +202,9 @@ void ExibirMenuPrincipal()
                 break;
             case 6:
                 ExibirSubmenu("Categorias", opcoesCategorias, descricoesCategoria);
+                break;
+            case 7:
+                ExibirSubmenu("Operações", opcoesOperacoes, descricoesOperacoes);
                 break;
             case -1:
                 Console.WriteLine("Saindo do sistema...");

@@ -27,8 +27,4 @@
     <ProjectReference Include="..\ControleDeEstoque.Models\ControleDeEstoque.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Menu\MenuCliente\" />
-  </ItemGroup>
-
 </Project>

@@ -4,6 +4,7 @@ using ControleDeEstoque.BancoDeDados;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleDeEstoque.Dados.Migrations
 {
     [DbContext(typeof(ControleDeEstoqueContext))]
-    partial class ControleDeEstoqueContextModelSnapshot : ModelSnapshot
+    [Migration("20250204151232_adicionandoDataEmItemDeEntrada")]
+    partial class adicionandoDataEmItemDeEntrada
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,9 +272,6 @@ namespace ControleDeEstoque.Dados.Migrations
                     b.Property<float>("Quantidade")
                         .HasColumnType("real");
 
-                    b.Property<float>("QuantidadeOriginal")
-                        .HasColumnType("real");
-
                     b.Property<float>("Valor")
                         .HasColumnType("real");
 
@@ -292,15 +292,12 @@ namespace ControleDeEstoque.Dados.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DataDeSaida")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdProduto")
-                        .HasColumnType("int");
-
                     b.Property<string>("Lote")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
 
                     b.Property<float>("Quantidade")
                         .HasColumnType("real");
@@ -310,7 +307,7 @@ namespace ControleDeEstoque.Dados.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdProduto");
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("ItemDeSaida");
                 });
@@ -573,8 +570,8 @@ namespace ControleDeEstoque.Dados.Migrations
             modelBuilder.Entity("ControleDeEstoque.Modelos.ItemDeSaida", b =>
                 {
                     b.HasOne("ControleDeEstoque.Modelos.Produto", "Produto")
-                        .WithMany("ProdutosSaida")
-                        .HasForeignKey("IdProduto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -657,8 +654,6 @@ namespace ControleDeEstoque.Dados.Migrations
                     b.Navigation("Fornecedores");
 
                     b.Navigation("ProdutosEntrada");
-
-                    b.Navigation("ProdutosSaida");
                 });
 #pragma warning restore 612, 618
         }

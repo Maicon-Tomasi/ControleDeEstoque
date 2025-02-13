@@ -8,8 +8,10 @@ namespace ControleDeEstoque.Modelos;
 public class EstoqueProduto
 {
     public int Id { get; set; }
-    public Estoque IdEstoque { get; set; }
-    public Produto IdProduto { get; set; }
+    public int IdEstoque { get; set; }
+    public int IdItemDeEntrada { get; set; }
+    public Estoque Estoque { get; set; }
+    public ItemDeEntrada ItemDeEntrada { get; set; }
 }
 
 

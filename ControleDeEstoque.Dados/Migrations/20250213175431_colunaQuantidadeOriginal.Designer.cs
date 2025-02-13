@@ -4,6 +4,7 @@ using ControleDeEstoque.BancoDeDados;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleDeEstoque.Dados.Migrations
 {
     [DbContext(typeof(ControleDeEstoqueContext))]
-    partial class ControleDeEstoqueContextModelSnapshot : ModelSnapshot
+    [Migration("20250213175431_colunaQuantidadeOriginal")]
+    partial class colunaQuantidadeOriginal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

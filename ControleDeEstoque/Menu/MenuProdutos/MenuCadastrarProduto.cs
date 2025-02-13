@@ -19,6 +19,8 @@ internal class MenuCadastrarProduto : Menu
     }
     public override void Executar()
     {
+
+        var categoriaDal = new DAL<Categoria>(Context);
         var fornecedorDal = new DAL<Fornecedor>(Context);
         var fornecedorProdutoDal = new DAL<FornecedorProdutos>(Context);
 
@@ -34,6 +36,44 @@ internal class MenuCadastrarProduto : Menu
         Console.WriteLine("Digite o tempo de vencimento produto: Ex(6 meses ou 6 dias)");
         string tempoDeVencimentoProduto = Console.ReadLine();
 
+        var categorias = categoriaDal.List();
+
+        foreach (var categoria in categorias)
+        {
+            Console.WriteLine("{0,-3} | {1,-20}",
+                categoria.Id,
+                categoria.Descricao
+             );
+        }
+
+        Console.WriteLine("Digite o id da categoria do produto: ");
+        string categoriaProduto = Console.ReadLine();
+        int idCategoria;
+
+        while (categoriaProduto is null)
+        {
+            Console.WriteLine("Digite o id da categoria: ");
+            categoriaProduto = Console.ReadLine();
+        }
+
+        try
+        {
+            int.TryParse(categoriaProduto, out int categoriaProdutoId);
+            if (categoriaDal.GetFor(c => c.Id.Equals(categoriaProdutoId)) is null)
+            {
+                Console.WriteLine("Categoria não encontrada");
+                return;
+            }
+            idCategoria = categoriaProdutoId;
+        }
+        catch (Exception ex) {
+            Console.WriteLine("Id inválido");
+            return;
+        }
+
+
+
+
         Produto produto = new Produto()
         {
             CodigoProduto = codigoProduto,
@@ -41,6 +81,7 @@ internal class MenuCadastrarProduto : Menu
             DescricoDoProduto = descricaoProduto,
             UnidadeDeMedida = unidadeMedidaProduto,
             TempoDeVencimento = tempoDeVencimentoProduto,
+            IdCategoriaProduto = Convert.ToInt32(idCategoria)
         };
 
         ProdutoDal.Create(produto);

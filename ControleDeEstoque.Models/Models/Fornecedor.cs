@@ -18,6 +18,9 @@ public class Fornecedor
     public int? CidadeId { get; set; }
     public Cidade Cidade { get; set; }
     public ICollection<FornecedorProdutos> Produtos { get; set; }
+    public ICollection<ItemDeEntrada> FornecedorEntrada { get; set; }
+
+
 
 
     public Fornecedor() { }

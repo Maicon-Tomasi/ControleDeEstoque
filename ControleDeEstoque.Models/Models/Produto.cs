@@ -20,6 +20,10 @@ public class Produto
     //public ICollection<EstoqueProduto> EstoqueProdutos { get; set; }
     public Categoria Categoria { get; set; }
     public ICollection<FornecedorProdutos> Fornecedores { get; set; }
+    public ICollection<ItemDeEntrada> ProdutosEntrada { get; set; }
+    public ICollection<ItemDeSaida> ProdutosSaida { get; set; }
+
+
     public Produto() { }
 
     public Produto(string codigoProduto, string nomeProduto, string descricoDoProduto, string unidadeDeMedida, string tempoDeVencimento)
